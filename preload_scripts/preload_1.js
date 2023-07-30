@@ -8,5 +8,6 @@ contextBridge.exposeInMainWorld('versions', {
 
 contextBridge.exposeInMainWorld('bridges', {
     talk: () => ipcRenderer.invoke("talk"),
-    updateConfig: () => ipcRenderer.invoke("updateConfig")
+    fetchConfig: (pathString) => ipcRenderer.invoke("fetchConfig", pathString),
+    updateConfig: (pathString, payload) => ipcRenderer.invoke("updateConfig", pathString, payload)
 })

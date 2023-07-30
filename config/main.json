@@ -1,9 +1,1 @@
-{
-    "appConfig": {
-        "width": 800,
-        "height": 600
-    },
-    "userConfig": {
-        "profile": "default"
-    }
-}
+{"appConfig":{"width":800,"height":600},"userConfig":{"profile":"default","user":"default"},"cosmeticConfig":{"colors":{"app":"#6ea0f0"}}}

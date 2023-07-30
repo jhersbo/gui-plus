@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const config = require("./config/main.json");
 const path = require("path");
+const actions = require("./actions/main");
 
 const buildWindow = () => {
     const win = new BrowserWindow({
@@ -15,7 +16,14 @@ const buildWindow = () => {
 }
 
 app.whenReady().then(() => {
-    ipcMain.handle("talk", () => "wugma");
+    ipcMain.handle("fetchConfig", (event, pathString) => {
+        return actions.getConfigFile(pathString)
+    })
+
+    ipcMain.handle("updateConfig", (event, pathString, payload) => {
+        return actions.updateConfigFile(pathString, payload);
+    })
+
     buildWindow();
 
     app.on('activate', () => {
@@ -30,4 +38,3 @@ app.on('window-all-closed', ()=>{
         app.quit();
     }
 })
-
