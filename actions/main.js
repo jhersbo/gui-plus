@@ -12,36 +12,29 @@ function getConfigFile(pathString){
 function updateConfigFile(pathString, payload){
     const fs = require('fs');
     const path = require('path');
-    const defaultProps = {
-        appConfig: {
-            width: 800,
-            height: 600
-        },
-        userConfig: {
-            profile: "default",
-            user: "default"
-        },
-        cosmeticConfig: {
-            colors: {
-                app: "#6ea0f0"
-            }
-        }
+    const oldConfig = getConfigFile(pathString);
+
+    if(Object.entries(payload).length != 0){
+        recParseObject(oldConfig, payload);
     }
 
-    let newJSON = new Object();
-
-    if(Object.entries(payload) == 0){
-        newJSON = defaultProps;
-    } else {
-        //create new config object
-        newJSON = recParseObject();
-
-    }
-
-    fs.writeFileSync(path.join(__dirname, pathString), JSON.stringify(newJSON));
+    fs.writeFileSync(path.join(__dirname, pathString), JSON.stringify(oldConfig));
 }
 
 //HELPERS
-function recParseObject(){
+function recParseObject(oldConfig, payload){
+    let oldEntries = Object.entries(oldConfig);
 
+    for(let [ k, v ] of oldEntries){
+
+        let payloadHasProperty = Object.getOwnPropertyNames(payload).includes(k);
+
+        if(typeof v == "object" && payloadHasProperty){
+            recParseObject(v, payload[`${k}`]);
+        } else if (typeof v != "object" && payloadHasProperty){
+            if(v != payload[`${k}`]){
+                oldEntries[`${k}`] = payload[`${k}`];
+            }
+        }
+    }
 }

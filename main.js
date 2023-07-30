@@ -16,6 +16,7 @@ const buildWindow = () => {
 }
 
 app.whenReady().then(() => {
+
     ipcMain.handle("fetchConfig", (event, pathString) => {
         return actions.getConfigFile(pathString)
     })
