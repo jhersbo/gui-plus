@@ -20,7 +20,7 @@
         loadConfig();
 
         function loadConfig(){
-            bridges.fetchConfig("../config/main.json")
+            appActions.fetchConfig("../config/main.json")
             .then((data) => {
                 app.config = data;
             })

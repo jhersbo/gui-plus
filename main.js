@@ -25,6 +25,25 @@ app.whenReady().then(() => {
         return actions.updateConfigFile(pathString, payload);
     })
 
+    //router actions
+    const { 
+        update, 
+        back, 
+        forward 
+    } = actions.router;
+
+    ipcMain.handle("routerUpdate", (event, path) => {
+        return update(path);
+    })
+
+    ipcMain.handle("routerBack", () => {
+        return back();
+    })
+
+    ipcMain.handle("routerForward", () => {
+        return forward();
+    })
+
     buildWindow();
 
     app.on('activate', () => {

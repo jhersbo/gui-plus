@@ -8,7 +8,7 @@
 
     elements.submitBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        bridges.updateConfig("../config/main.json", {});
+        appActions.routerUpdate("/files");
     })
 
 })();
