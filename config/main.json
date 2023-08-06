@@ -1,1 +1,16 @@
-{"appConfig":{"width":800,"height":600},"userConfig":{"profile":"henry","user":"default"},"cosmeticConfig":{"colors":{"app":"#6ea0f0"}}}
+{
+    "appConfig":{
+        "width":800,
+        "height":600,
+        "preloadScripts": "../preload_scripts/preload_1.js"
+    },
+    "userConfig":{
+        "profile":"henry",
+        "user":"default"
+    },
+    "cosmeticConfig":{
+        "colors":{
+            "app":"#6ea0f0"
+        }
+    }
+}

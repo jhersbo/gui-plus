@@ -15,7 +15,7 @@
         this.cache = {
             location: {
                 previous: "",
-                current: ""
+                current: "index.html"
             }
         }
     }
@@ -58,9 +58,29 @@
 
         locCache.current = path;
         locCache.previous = prevLoc;
+
+        const pathMod = require("path");
+
+        buildWindow().loadFile(pathMod.join(__dirname, path));
     }
     
     function back(){}
     function forward(){}
+
+    //** HELPERS **//
+
+    function buildWindow(){
+        const { BrowserWindow } = require("electron");
+        const config = require("../config/main.json");
+        const pathMod = require("path");
+
+        return new BrowserWindow({
+            width: config.appConfig.width,
+            height: config.appConfig.height,
+            webPreferences:{
+                preload: pathMod.join(__dirname, config.appConfig.preloadScripts)
+            }
+        })
+    }
 
 })();

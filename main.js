@@ -5,14 +5,14 @@ const actions = require("./actions/main");
 
 const buildWindow = () => {
     const win = new BrowserWindow({
-        width: config.width,
-        height: config.height,
+        width: config.appConfig.width,
+        height: config.appConfig.height,
         webPreferences:{
             preload: path.join(__dirname, "/preload_scripts/preload_1.js")
         }
     })
 
-    win.loadFile("index.html")
+    win.loadFile("index.html");
 }
 
 app.whenReady().then(() => {

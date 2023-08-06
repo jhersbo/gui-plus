@@ -8,7 +8,7 @@
 
     elements.submitBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        appActions.routerUpdate("/files");
+        appActions.routerUpdate("../views/settings.html");
     })
 
 })();
